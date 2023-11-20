@@ -34,6 +34,8 @@ public class HelloWorldApiRoute extends RouteBuilder {
                     exchange.getMessage().setBody(new HashMap(){{
                         put("hello", exchange.getIn().getHeader("name"));
                     }});
+                    exchange.getMessage().getHeaders().clear();
+
                 }).marshal().json();
 
         from("direct:external-api-call")
