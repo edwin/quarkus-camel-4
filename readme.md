@@ -30,7 +30,7 @@ $ curl -kv http://localhost:8080/api/hello/edwin
 
 Test Rest API 2
 ```
-$ curl -kv http://localhost:8080/api/call/github.com
+$ curl -kv http://localhost:8080/api/call/https%3A%2F%2Fgithub.com%2F
 * TCP_NODELAY set
 *   Trying 127.0.0.1:8080...
 * TCP_NODELAY set

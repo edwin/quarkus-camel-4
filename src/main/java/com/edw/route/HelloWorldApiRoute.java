@@ -1,5 +1,6 @@
 package com.edw.route;
 
+import jakarta.enterprise.context.ApplicationScoped;
 import org.apache.camel.builder.RouteBuilder;
 
 import java.util.HashMap;
@@ -12,6 +13,7 @@ import java.util.HashMap;
  * @author Muhammad Edwin < edwin at redhat dot com >
  * 20 Nov 2023 09:34
  */
+@ApplicationScoped
 public class HelloWorldApiRoute extends RouteBuilder {
 
     @Override
@@ -44,7 +46,7 @@ public class HelloWorldApiRoute extends RouteBuilder {
                     exchange.getOut().setHeader("url", exchange.getIn().getHeader("url"));
                     exchange.getIn().getHeaders().clear();
                 })
-                .toD("https://${header.url}/")
+                .toD("${header.url}")
                 .log("result is ${body}")
                 .log("finish calling ${header.url}")
                 .setHeader("whatever", constant("header"));

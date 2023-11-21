@@ -17,16 +17,20 @@ import static org.hamcrest.Matchers.*;
  */
 @QuarkusTest
 public class HelloWorldApiRouteTest {
+
+    @Test
+    public void testHelloCallExternalAPI() {
+    }
+
     @Test
     public void testHelloAPI() {
         given()
-                .when()
+            .when()
                 .get("/api/hello/edwin")
-                .then()
+            .then()
                 .statusCode(200)
                 .body("hello", isA(String.class))
                 .body("hello", equalTo("edwin"))
                 .log().all();
     }
-
 }
