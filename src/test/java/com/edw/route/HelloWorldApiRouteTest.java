@@ -1,5 +1,6 @@
 package com.edw.route;
 
+import io.quarkus.test.common.QuarkusTestResource;
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.*;
 
@@ -16,10 +17,19 @@ import static org.hamcrest.Matchers.*;
  * 20 Nov 2023 12:09
  */
 @QuarkusTest
+@QuarkusTestResource(WireMockTestResource.class)
 public class HelloWorldApiRouteTest {
 
     @Test
     public void testHelloCallExternalAPI() {
+        given()
+                .log().all()
+            .when()
+                .get("/api/call/http%3A%2F%2Flocalhost%3A8082%2Fmock")
+            .then()
+                .statusCode(200)
+                .body("hello", isA(String.class))
+                .body("hello", equalTo("mock"));
     }
 
     @Test

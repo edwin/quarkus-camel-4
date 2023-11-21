@@ -59,3 +59,14 @@ $ curl -kv http://localhost:8080/api/call/https%3A%2F%2Fgithub.com%2F
 ....                                  
 
 ```
+
+## Test Cases
+We are leveraging Wiremock to do a mock response for third party APIs
+```xml
+        <dependency>
+            <groupId>org.wiremock</groupId>
+            <artifactId>wiremock</artifactId>
+            <version>3.3.1</version>
+            <scope>test</scope>
+        </dependency>
+```

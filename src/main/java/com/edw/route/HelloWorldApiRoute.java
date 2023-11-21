@@ -3,6 +3,7 @@ package com.edw.route;
 import jakarta.enterprise.context.ApplicationScoped;
 import org.apache.camel.builder.RouteBuilder;
 
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 
 /**
@@ -43,7 +44,7 @@ public class HelloWorldApiRoute extends RouteBuilder {
         from("direct:external-api-call")
                 .log("calling ${header.url}")
                 .process(exchange -> {
-                    exchange.getOut().setHeader("url", exchange.getIn().getHeader("url"));
+                    exchange.getOut().setHeader("url", java.net.URLDecoder.decode(exchange.getIn().getHeader("url").toString(), StandardCharsets.UTF_8.name()));
                     exchange.getIn().getHeaders().clear();
                 })
                 .toD("${header.url}")
