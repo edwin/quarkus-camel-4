@@ -9,7 +9,6 @@ import java.util.Map;
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.get;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
-import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig;
 
 
 /**
@@ -34,9 +33,7 @@ public class WireMockTestResource implements QuarkusTestResourceLifecycleManager
                                 .withStatus(200)
                                 .withHeader("Content-Type", "application/json")
                                 .withBody("{\"hello\": \"mock\"}")));
-
-        Map<String, String> conf = new HashMap<>();
-        return conf;
+        return new HashMap<>();
     }
 
     @Override
