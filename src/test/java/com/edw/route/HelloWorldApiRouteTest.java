@@ -23,13 +23,13 @@ public class HelloWorldApiRouteTest {
     @Test
     public void testHelloCallExternalAPI() {
         given()
-                .log().all()
             .when()
                 .get("/api/call/http%3A%2F%2Flocalhost%3A8082%2Fmock")
             .then()
                 .statusCode(200)
                 .body("hello", isA(String.class))
-                .body("hello", equalTo("mock"));
+                .body("hello", equalTo("mock"))
+            .log().all();
     }
 
     @Test
@@ -41,6 +41,6 @@ public class HelloWorldApiRouteTest {
                 .statusCode(200)
                 .body("hello", isA(String.class))
                 .body("hello", equalTo("edwin"))
-                .log().all();
+            .log().all();
     }
 }
